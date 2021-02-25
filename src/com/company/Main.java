@@ -6,21 +6,21 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arr = {4888, -1, -2147483648, 0, 123, 4, 2147483647, 2147483646, 9};
-        ThanosSort(arr);
+        thanosSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
     /**
      * основной метод принимает на вход массив, вызывает дополнительный метод с тремя параметрами
      */
-    public static void ThanosSort(int[] arr) {
-        BucketSort(arr, 0, arr.length);
+    public static void thanosSort(int[] arr) {
+        bucketSort(arr, 0, arr.length);
     }
 
     /**
      * проверяем отсортирован ли массив и возвращаем 0, если не отсортиван, 1 - отсортирован
      */
-    public static boolean NotSorted(int[] arr, int start, int end) {
+    public static boolean notSorted(int[] arr, int start, int end) {
         for (int i = start; i < end - 1; i++)
             if (arr[i] > arr[i + 1]) {
                 return true;
@@ -31,7 +31,7 @@ public class Main {
     /**
      * метод сортировки, параметры: массив, индекс начала массива/подмассива, индекс его конца
      */
-    public static void BucketSort(int[] arr, int start, int end) {
+    public static void bucketSort(int[] arr, int start, int end) {
         // считаем среднее ариф.элементов массива
         double mean;
         double sum = 0;
@@ -60,11 +60,11 @@ public class Main {
             System.arraycopy(copy, 0, arr, start, copy.length);
         }
         // роверяем отсортированы ли подмассивы и рекурсивно вызываем метод для повторной сортировк
-        if (left > 1 && NotSorted(arr, start, start + left)) {
-            BucketSort(arr, start, start + left);
+        if (left > 1 && notSorted(arr, start, start + left)) {
+            bucketSort(arr, start, start + left);
         }
-        if (left < end - 1 && NotSorted(arr, start + left, end)) {
-            BucketSort(arr, start + left, end);
+        if (left < end - 1 && notSorted(arr, start + left, end)) {
+            bucketSort(arr, start + left, end);
         }
     }
 }
